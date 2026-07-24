@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Galaxy Atlas — Top 100</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#090b10; --panel:#11151d; --panel2:#171c26;
+  --text:#eef2f7; --muted:#aab3c2; --line:#2b3342;
+  --accent:#8db8ff; --star:#ffd76a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#07090d,#0c1017 45%,#090b10);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header{padding:34px 18px 20px;text-align:center}
+h1{margin:0;font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:.02em}
+.subtitle{color:var(--muted);margin:10px auto 0;max-width:850px;line-height:1.5}
+.wrap{width:min(1500px,96vw);margin:auto;padding-bottom:40px}
+.controls{display:grid;grid-template-columns:minmax(230px,1fr) repeat(3,minmax(145px,205px)) auto;gap:10px;
+background:rgba(17,21,29,.94);padding:14px;border:1px solid var(--line);border-radius:14px;
+position:sticky;top:8px;z-index:5;backdrop-filter:blur(12px)}
+input,select,button{width:100%;background:#0d1118;color:var(--text);border:1px solid var(--line);
+border-radius:9px;padding:11px 12px;font-size:15px}
+button{cursor:pointer;font-weight:700;white-space:nowrap}
+button:hover{background:#182131;border-color:#4a5c78}
+.browser-note{margin:12px 2px 0;padding:11px 13px;border:1px solid #38465d;border-radius:10px;background:#111722;color:#c7d3e4;font-size:14px}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px;margin:12px 2px}
+.tablebox{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:1120px}
+thead th{position:sticky;top:0;background:var(--panel2);z-index:2;text-align:left;padding:13px 12px;
+font-size:13px;text-transform:uppercase;letter-spacing:.055em;color:#dce5f3;border-bottom:1px solid var(--line)}
+tbody td{padding:12px;border-bottom:1px solid #222936;vertical-align:top;line-height:1.38}
+tbody tr:hover{background:#151b25}
+.rank{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;width:48px}
+.object{font-weight:750;white-space:nowrap;color:#f7f9fc}
+.stars{color:var(--star);letter-spacing:1px;white-space:nowrap;font-size:17px}
+.note{min-width:310px;color:#d9e0ea}
+.legend{margin:18px 2px 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+color:var(--muted);line-height:1.65}
+.legend strong{color:var(--text)}
+footer{text-align:center;color:#788396;font-size:13px;padding:26px 16px}
+.hidden{display:none}
+@media(max-width:850px){
+  .controls{grid-template-columns:1fr 1fr;position:static}
+  .controls input{grid-column:1/-1}
+  .controls button{grid-column:1/-1}
+  header{padding-top:24px}
+}
+
+.language-switch{position:absolute;top:18px;right:clamp(18px,3vw,44px);display:flex;gap:7px;padding:5px;background:rgba(17,21,29,.78);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(10px)}
+.language-switch a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:700;padding:7px 11px;border-radius:999px}
+.language-switch a:hover{color:var(--text);background:#182131}
+.language-switch a.active{color:#07101d;background:var(--accent)}
+header{position:relative}
+@media(max-width:650px){.language-switch{position:static;width:max-content;margin:0 auto 18px}.language-switch a{font-size:13px;padding:6px 10px}}
+
+</style>
+</head>
+<body>
+<header>
+<nav class="language-switch" aria-label="Language selection">
+<a href="index.html" lang="nl">Nederlands</a>
+<a class="active" href="galaxy-atlas-english.html" lang="en" aria-current="page">English</a>
+</nav>
+<h1>Galaxy Atlas<small style="font-size:.42em;color:#8db8ff;vertical-align:middle"></small></h1>
+<p class="subtitle">Top 100 galaxy targets visible from the Netherlands.</p>
+</header>
+<main class="wrap">
+<section aria-label="Filters" class="controls">
+<input id="search" placeholder="Search object, nickname, or notes…" type="search"/>
+<select id="stars">
+<option value="">All star ratings</option>
+<option value="5">★★★★★</option>
+<option value="4">★★★★☆</option>
+<option value="3">★★★☆☆</option>
+<option value="2">★★☆☆☆</option>
+<option value="1">★☆☆☆☆</option>
+</select>
+<select id="season">
+<option value="">All seasons</option>
+<option value="winter">Winter</option>
+<option value="spring">Spring</option>
+<option value="summer">Summer</option>
+<option value="autumn">Autumn</option>
+</select>
+<select id="type">
+<option value="">All types</option>
+<option>Spiral</option>
+<option>Barred spiral</option>
+<option value="Edge-on">Edge-on</option>
+<option>Interacting pair</option>
+<option>Group</option>
+<option>Irregular</option>
+<option value="Peculiar">Peculiar</option>
+<option>Lenticular</option>
+<option>Elliptical</option>
+<option>Ring galaxy</option>
+<option value="Starburst">Starburst</option>
+</select>
+<button id="reset" type="button">Clear filters</button>
+</section>
+<div class="browser-note" id="browserNote">
+   
+ 
+<div class="meta">
+<span id="count">100 objects visible</span>
+<span>Click a column heading to sort</span>
+</div>
+<div class="tablebox">
+<table id="atlas">
+<thead>
+<tr>
+<th data-col="0" data-kind="number">#</th>
+<th data-col="1">Object</th>
+<th data-col="2">Nickname</th>
+<th data-col="3" data-kind="stars">Score</th>
+<th data-col="4">Type</th>
+<th data-col="5">Best season</th>
+<th data-col="6">Integration time</th>
+<th data-col="7">NOTES</th>
+</tr>
+</thead>
+<tbody>
+<tr data-season="spring" data-stars="5" data-type="Interacting pair">
+<td class="rank">1</td>
+<td class="object">M51 + NGC 5195</td>
+<td>Whirlpool Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Very distinct spiral arms and a striking companion.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="5" data-type="Starburst">
+<td class="rank">2</td>
+<td class="object">M82</td>
+<td>Cigar Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Starburst</td>
+<td>winter–spring</td>
+<td>1–3 hours</td>
+<td class="note">High surface brightness; dust structure appears quickly.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="5" data-type="Spiral">
+<td class="rank">3</td>
+<td class="object">M81</td>
+<td>Bode’s Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>2–4 hours</td>
+<td class="note">Large bright core and subtle, broad spiral arms.</td>
+</tr>
+<tr data-season="autumn" data-stars="5" data-type="Interacting pair">
+<td class="rank">4</td>
+<td class="object">M31 + M32 + M110</td>
+<td>Andromeda Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Interacting pair</td>
+<td>autumn</td>
+<td>1–3 hours</td>
+<td class="note">A mosaic is recommended; all three galaxies can be framed together.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Spiral">
+<td class="rank">5</td>
+<td class="object">M106</td>
+<td>NGC 4258</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Bright core and an attractive elongated disk.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Edge-on">
+<td class="rank">6</td>
+<td class="object">NGC 4565</td>
+<td>Needle Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">One of the finest edge-on galaxies, with a clear dust lane.</td>
+</tr>
+<tr data-season="autumn" data-stars="5" data-type="Spiral">
+<td class="rank">7</td>
+<td class="object">M33</td>
+<td>Triangulum Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>autumn</td>
+<td>3–6 hours</td>
+<td class="note">Large and rich in detail, but diffuse; a mosaic gives the best result.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Spiral">
+<td class="rank">8</td>
+<td class="object">M64</td>
+<td>Black Eye Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">The dark dust lane near the core is the key feature.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Spiral">
+<td class="rank">9</td>
+<td class="object">M63</td>
+<td>Sunflower Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Grainy, flocculent spiral structure around a bright core.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Edge-on">
+<td class="rank">10</td>
+<td class="object">NGC 4631 + NGC 4627</td>
+<td>Whale Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Large, bright, and irregularly shaped; the companion is often visible.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Interacting pair">
+<td class="rank">11</td>
+<td class="object">NGC 4490 + NGC 4485</td>
+<td>Cocoon Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Photogenic interacting pair with an asymmetric shape.</td>
+</tr>
+<tr data-season="autumn" data-stars="5" data-type="Edge-on">
+<td class="rank">12</td>
+<td class="object">NGC 891</td>
+<td>Outer Limits Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Edge-on</td>
+<td>autumn</td>
+<td>3–5 hours</td>
+<td class="note">Classic thin galaxy with a central dust lane.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="5" data-type="Spiral">
+<td class="rank">13</td>
+<td class="object">NGC 2903</td>
+<td>—</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>2–4 hours</td>
+<td class="note">Bright barred spiral that reveals detail quickly.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Edge-on / lenticular">
+<td class="rank">14</td>
+<td class="object">M104</td>
+<td>Sombrero Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Edge-on / lenticular</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Highly recognizable bright core and dust lane; image it when it is highest in the southern sky.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Spiral">
+<td class="rank">15</td>
+<td class="object">M101</td>
+<td>Pinwheel Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>5–8 hours</td>
+<td class="note">Very large and rich in arms, but with low surface brightness.</td>
+</tr>
+<tr data-season="summer–autumn" data-stars="5" data-type="Spiral">
+<td class="rank">16</td>
+<td class="object">NGC 6946</td>
+<td>Fireworks Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>summer–autumn</td>
+<td>4–7 hours</td>
+<td class="note">Beautiful face-on spiral; benefits greatly from a transparent night.</td>
+</tr>
+<tr data-season="spring" data-stars="5" data-type="Spiral">
+<td class="rank">17</td>
+<td class="object">M94</td>
+<td>Croc’s Eye Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>1–3 hours</td>
+<td class="note">Bright core and inner ring; the outer ring requires much more time.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="5" data-type="Spiral">
+<td class="rank">18</td>
+<td class="object">NGC 2403</td>
+<td>—</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>3–6 hours</td>
+<td class="note">Nearby spiral galaxy with irregular star-forming regions.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="5" data-type="Spiral">
+<td class="rank">19</td>
+<td class="object">NGC 2841</td>
+<td>Tiger’s Eye Galaxy</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright compact core with fine, tightly wound arms.</td>
+</tr>
+<tr data-season="summer–autumn" data-stars="5" data-type="Spiral">
+<td class="rank">20</td>
+<td class="object">NGC 7331</td>
+<td>Deer Lick Group</td>
+<td aria-label="5 out of 5 stars" class="stars">★★★★★</td>
+<td>Spiral</td>
+<td>summer–autumn</td>
+<td>3–5 hours</td>
+<td class="note">Bright inclined disk; small background galaxies often appear in the frame.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">21</td>
+<td class="object">M65 + M66 + NGC 3628</td>
+<td>Leo Triplet</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Strong trio; a mosaic or wide framing is recommended.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="4" data-type="Edge-on">
+<td class="rank">22</td>
+<td class="object">NGC 2683</td>
+<td>UFO Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>winter–spring</td>
+<td>2–4 hours</td>
+<td class="note">Bright, elongated, and well suited to the field of view.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">23</td>
+<td class="object">NGC 3521</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Bright, dusty, and rich in small-scale structure.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">24</td>
+<td class="object">M108</td>
+<td>Surfboard Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Dark patches and an irregular edge-on shape.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Barred spiral">
+<td class="rank">25</td>
+<td class="object">M109</td>
+<td>Vacuum Cleaner Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Barred spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Barred spiral with a bright core and faint outer arms.</td>
+</tr>
+<tr data-season="spring–summer" data-stars="4" data-type="Edge-on">
+<td class="rank">26</td>
+<td class="object">NGC 5907</td>
+<td>Splinter Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring–summer</td>
+<td>3–5 hours</td>
+<td class="note">Very thin edge-on galaxy with an attractive central bulge.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">27</td>
+<td class="object">NGC 4559</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Large inclined spiral with several star-forming regions.</td>
+</tr>
+<tr data-season="summer" data-stars="4" data-type="Spiral">
+<td class="rank">28</td>
+<td class="object">NGC 6503</td>
+<td>Lost-in-Space Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>summer</td>
+<td>3–5 hours</td>
+<td class="note">Compact and bright enough for a crisp S50 result.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">29</td>
+<td class="object">NGC 4244</td>
+<td>Silver Needle Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Long, thin, and relatively bright edge-on galaxy.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="4" data-type="Spiral">
+<td class="rank">30</td>
+<td class="object">NGC 3344</td>
+<td>Sliced Onion Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>4–7 hours</td>
+<td class="note">Nearly face-on, with a neat ring and delicate arms.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">31</td>
+<td class="object">NGC 4216</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Beautiful Virgo edge-on galaxy; small neighboring galaxies enhance the composition.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Interacting pair">
+<td class="rank">32</td>
+<td class="object">NGC 4088 + NGC 4085</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Distorted interacting pair with dust structure.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Irregular">
+<td class="rank">33</td>
+<td class="object">NGC 4449</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Irregular</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Irregular galaxy with many knots and star-forming regions.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Peculiar">
+<td class="rank">34</td>
+<td class="object">NGC 4656 + NGC 4657</td>
+<td>Hockey Stick Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Peculiar</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Highly recognizable bent shape; frames nicely in a horizontal composition.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">35</td>
+<td class="object">NGC 4013</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Narrow edge-on galaxy with a clear dark central lane.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">36</td>
+<td class="object">NGC 3079</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Active nucleus and a strikingly disturbed disk.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Interacting pair">
+<td class="rank">37</td>
+<td class="object">NGC 3718 + NGC 3729</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Strongly distorted system with an attractive companion.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">38</td>
+<td class="object">NGC 3953</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright core and attractive barred-spiral structure.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">39</td>
+<td class="object">NGC 4151 + NGC 4156</td>
+<td>Eye Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright Seyfert nucleus with subtle outer structure.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Interacting pair">
+<td class="rank">40</td>
+<td class="object">NGC 3893 + NGC 3896</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Attractive interacting pair in Ursa Major.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">41</td>
+<td class="object">NGC 5005</td>
+<td>Caldwell 29</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Bright core, inclined disk, and dust lanes.</td>
+</tr>
+<tr data-season="spring–summer" data-stars="4" data-type="Group">
+<td class="rank">42</td>
+<td class="object">NGC 5371 + Hickson 68</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Group</td>
+<td>spring–summer</td>
+<td>4–8 hours</td>
+<td class="note">Interesting combination of a spiral and a compact group.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">43</td>
+<td class="object">M100</td>
+<td>Mirror Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–6 hours</td>
+<td class="note">Elegant face-on spiral; the arms become clearer with long integration.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">44</td>
+<td class="object">M99</td>
+<td>Coma Pinwheel Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–6 hours</td>
+<td class="note">Striking asymmetric pattern with one dominant arm.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Peculiar">
+<td class="rank">45</td>
+<td class="object">NGC 4725</td>
+<td>One-Armed Spiral</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Peculiar</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Ring-like structure with an unusual one-armed appearance.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Spiral">
+<td class="rank">46</td>
+<td class="object">NGC 3631</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Symmetrical spiral that especially rewards long integration.</td>
+</tr>
+<tr data-season="spring–summer" data-stars="4" data-type="Edge-on">
+<td class="rank">47</td>
+<td class="object">NGC 5866</td>
+<td>Spindle Galaxy / M102</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring–summer</td>
+<td>3–6 hours</td>
+<td class="note">Bright lens-shaped edge-on galaxy with a subtle dust lane.</td>
+</tr>
+<tr data-season="spring" data-stars="4" data-type="Edge-on">
+<td class="rank">48</td>
+<td class="object">NGC 5775 + NGC 5774</td>
+<td>—</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Photogenic interacting pair with contrasting orientations.</td>
+</tr>
+<tr data-season="autumn–winter" data-stars="4" data-type="Peculiar / polar ring">
+<td class="rank">49</td>
+<td class="object">NGC 660</td>
+<td>Polar Ring Galaxy</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Peculiar / polar ring</td>
+<td>autumn–winter</td>
+<td>4–8 hours</td>
+<td class="note">Unusually distorted galaxy with a dark, inclined ring structure.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="4" data-type="Interacting pair">
+<td class="rank">50</td>
+<td class="object">NGC 3226 + NGC 3227</td>
+<td>Arp 94</td>
+<td aria-label="4 out of 5 stars" class="stars">★★★★☆</td>
+<td>Interacting pair</td>
+<td>winter–spring</td>
+<td>3–6 hours</td>
+<td class="note">Compact interacting pair close to Gamma Leonis.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Interacting pair">
+<td class="rank">51</td>
+<td class="object">NGC 4567 + NGC 4568</td>
+<td>Siamese Twins</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Two overlapping Virgo spirals with clearly separated cores.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">52</td>
+<td class="object">M96</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright core; part of a rich Leo group.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Barred spiral">
+<td class="rank">53</td>
+<td class="object">M95</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Barred spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Attractive central bar and ring structure.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Interacting pair">
+<td class="rank">54</td>
+<td class="object">M105 + NGC 3384 + NGC 3389</td>
+<td>Leo I Group</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Three different galaxy types in one field of view.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="3" data-type="Group">
+<td class="rank">55</td>
+<td class="object">NGC 3190-groep</td>
+<td>Hickson 44</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Group</td>
+<td>winter–spring</td>
+<td>5–9 hours</td>
+<td class="note">Compact group containing NGC 3190, 3187, 3193, and 3185.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">56</td>
+<td class="object">NGC 3184</td>
+<td>Little Pinwheel Galaxy</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>5–9 hours</td>
+<td class="note">Beautiful face-on spiral, but the arms are diffuse.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Peculiar">
+<td class="rank">57</td>
+<td class="object">NGC 3310</td>
+<td>Bow-and-Arrow Galaxy</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Peculiar</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Compact starburst galaxy with bright knots.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Edge-on">
+<td class="rank">58</td>
+<td class="object">NGC 3432</td>
+<td>Knitting Needle Galaxy</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Thin, irregular, and rich in star-forming knots.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">59</td>
+<td class="object">NGC 4051</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Active nucleus with faint asymmetric arms.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Barred spiral">
+<td class="rank">60</td>
+<td class="object">NGC 4274</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Barred spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Attractive bar and lens-shaped inner structure.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Interacting pair">
+<td class="rank">61</td>
+<td class="object">NGC 4618 + NGC 4625</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Irregular pair; NGC 4618 has a striking one-armed appearance.</td>
+</tr>
+<tr data-season="summer" data-stars="3" data-type="Spiral">
+<td class="rank">62</td>
+<td class="object">NGC 6015</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>summer</td>
+<td>4–8 hours</td>
+<td class="note">Good northern summer target with a mottled disk.</td>
+</tr>
+<tr data-season="summer–autumn" data-stars="3" data-type="Spiral">
+<td class="rank">63</td>
+<td class="object">NGC 7217</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>summer–autumn</td>
+<td>4–7 hours</td>
+<td class="note">Nearly round galaxy with several subtle rings.</td>
+</tr>
+<tr data-season="autumn" data-stars="3" data-type="Barred spiral">
+<td class="rank">64</td>
+<td class="object">NGC 7479</td>
+<td>Superman Galaxy</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Barred spiral</td>
+<td>autumn</td>
+<td>5–9 hours</td>
+<td class="note">Strong bar and one dominant curved arm.</td>
+</tr>
+<tr data-season="autumn" data-stars="3" data-type="Edge-on">
+<td class="rank">65</td>
+<td class="object">NGC 7814</td>
+<td>Little Sombrero Galaxy</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Edge-on</td>
+<td>autumn</td>
+<td>4–8 hours</td>
+<td class="note">Bright core and thin dust lane; a northern alternative to M104.</td>
+</tr>
+<tr data-season="autumn" data-stars="3" data-type="Interacting pair">
+<td class="rank">66</td>
+<td class="object">NGC 772 + NGC 770</td>
+<td>Arp 78</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>autumn</td>
+<td>4–8 hours</td>
+<td class="note">Asymmetric spiral with a strongly extended arm.</td>
+</tr>
+<tr data-season="autumn" data-stars="3" data-type="Spiral">
+<td class="rank">67</td>
+<td class="object">NGC 925</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>autumn</td>
+<td>5–9 hours</td>
+<td class="note">Large, loosely structured galaxy with low surface brightness.</td>
+</tr>
+<tr data-season="autumn–winter" data-stars="3" data-type="Interacting pair">
+<td class="rank">68</td>
+<td class="object">NGC 1023 + NGC 1023A</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>autumn–winter</td>
+<td>3–6 hours</td>
+<td class="note">Bright lenticular galaxy with a small companion.</td>
+</tr>
+<tr data-season="autumn–winter" data-stars="3" data-type="Edge-on">
+<td class="rank">69</td>
+<td class="object">NGC 1055</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Edge-on</td>
+<td>autumn–winter</td>
+<td>4–8 hours</td>
+<td class="note">Dusty edge-on galaxy, attractive as a standalone target.</td>
+</tr>
+<tr data-season="winter" data-stars="3" data-type="Peculiar">
+<td class="rank">70</td>
+<td class="object">NGC 2146</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Peculiar</td>
+<td>winter</td>
+<td>4–8 hours</td>
+<td class="note">Heavily disturbed starburst galaxy with irregular dust lanes.</td>
+</tr>
+<tr data-season="winter" data-stars="3" data-type="Spiral">
+<td class="rank">71</td>
+<td class="object">NGC 2336</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>winter</td>
+<td>5–9 hours</td>
+<td class="note">Large northern barred spiral with faint outer arms.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="3" data-type="Spiral">
+<td class="rank">72</td>
+<td class="object">NGC 2775</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>winter–spring</td>
+<td>4–8 hours</td>
+<td class="note">Compact, photogenic spiral with very tightly wound arms.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">73</td>
+<td class="object">NGC 3675</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Inclined spiral with a bright core and dust structure.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">74</td>
+<td class="object">NGC 4100</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Elongated and reasonably bright member of the M109 group.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">75</td>
+<td class="object">M88</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Inclined spiral with a compact core.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">76</td>
+<td class="object">M98</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Elongated Virgo spiral with a bright core.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">77</td>
+<td class="object">M90</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Large Virgo galaxy with subtle, smooth arms.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Barred spiral">
+<td class="rank">78</td>
+<td class="object">M91</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Barred spiral</td>
+<td>spring</td>
+<td>5–8 hours</td>
+<td class="note">Clear central bar; the arms remain fairly faint.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Spiral">
+<td class="rank">79</td>
+<td class="object">M58</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Compact barred spiral in a crowded galaxy field.</td>
+</tr>
+<tr data-season="spring" data-stars="3" data-type="Interacting pair">
+<td class="rank">80</td>
+<td class="object">M85 + NGC 4394</td>
+<td>—</td>
+<td aria-label="3 out of 5 stars" class="stars">★★★☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright lenticular galaxy with an attractive barred spiral nearby.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Interacting pair">
+<td class="rank">81</td>
+<td class="object">M84 + M86</td>
+<td>Markarian’s Chain Core</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Two bright Virgo galaxies with several fainter neighbors in the frame.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Elliptical">
+<td class="rank">82</td>
+<td class="object">M87</td>
+<td>Virgo A</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Elliptical</td>
+<td>spring</td>
+<td>2–4 hours</td>
+<td class="note">Enormous elliptical core; the jet itself is a difficult bonus.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Interacting pair">
+<td class="rank">83</td>
+<td class="object">NGC 4435 + NGC 4438</td>
+<td>The Eyes</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">One of the most distinctive interacting pairs in Virgo.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Interacting pair">
+<td class="rank">84</td>
+<td class="object">M60 + NGC 4647</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Interacting pair</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright elliptical galaxy beside a fainter spiral.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Elliptical">
+<td class="rank">85</td>
+<td class="object">M59</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Elliptical</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Bright elliptical galaxy, especially attractive in a Virgo mosaic.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Elliptical">
+<td class="rank">86</td>
+<td class="object">M89</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Elliptical</td>
+<td>spring</td>
+<td>3–5 hours</td>
+<td class="note">Nearly round elliptical galaxy with a compact core.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Elliptical">
+<td class="rank">87</td>
+<td class="object">NGC 4636</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Elliptical</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright elliptical galaxy in a rich background field.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Edge-on">
+<td class="rank">88</td>
+<td class="object">NGC 4762 + NGC 4754</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Edge-on</td>
+<td>spring</td>
+<td>4–8 hours</td>
+<td class="note">Very thin lenticular galaxy beside a more compact neighbor.</td>
+</tr>
+<tr data-season="spring–summer" data-stars="2" data-type="Spiral">
+<td class="rank">89</td>
+<td class="object">NGC 5585</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Spiral</td>
+<td>spring–summer</td>
+<td>4–7 hours</td>
+<td class="note">Diffuse but pleasant dwarf spiral with mottled structure.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Spiral">
+<td class="rank">90</td>
+<td class="object">NGC 3626</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Compact and relatively bright early-type spiral galaxy.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="2" data-type="Interacting pair">
+<td class="rank">91</td>
+<td class="object">NGC 3166 + NGC 3169</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Interacting pair</td>
+<td>winter–spring</td>
+<td>4–7 hours</td>
+<td class="note">Attractive disturbed pair, but low in the Dutch sky.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Barred spiral">
+<td class="rank">92</td>
+<td class="object">NGC 3941</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Barred spiral</td>
+<td>spring</td>
+<td>3–6 hours</td>
+<td class="note">Bright, compact lens-shaped galaxy.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Spiral">
+<td class="rank">93</td>
+<td class="object">NGC 4395</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>6–10 hours</td>
+<td class="note">Large but very diffuse; an interesting active dwarf galaxy.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Spiral">
+<td class="rank">94</td>
+<td class="object">NGC 4699</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Spiral</td>
+<td>spring</td>
+<td>4–7 hours</td>
+<td class="note">Compact bright spiral, but quite low from the Netherlands.</td>
+</tr>
+<tr data-season="spring" data-stars="2" data-type="Peculiar">
+<td class="rank">95</td>
+<td class="object">NGC 4731</td>
+<td>—</td>
+<td aria-label="2 out of 5 stars" class="stars">★★☆☆☆</td>
+<td>Peculiar</td>
+<td>spring</td>
+<td>5–9 hours</td>
+<td class="note">Strongly distorted barred spiral with long, faint arms.</td>
+</tr>
+<tr data-season="summer" data-stars="1" data-type="Spiral">
+<td class="rank">96</td>
+<td class="object">NGC 6643</td>
+<td>—</td>
+<td aria-label="1 out of 5 stars" class="stars">★☆☆☆☆</td>
+<td>Spiral</td>
+<td>summer</td>
+<td>4–8 hours</td>
+<td class="note">Compact summer galaxy with a bright core and delicate arm structure.</td>
+</tr>
+<tr data-season="autumn–winter" data-stars="1" data-type="Interacting pair">
+<td class="rank">97</td>
+<td class="object">NGC 1161 + NGC 1160</td>
+<td>—</td>
+<td aria-label="1 out of 5 stars" class="stars">★☆☆☆☆</td>
+<td>Interacting pair</td>
+<td>autumn–winter</td>
+<td>5–9 hours</td>
+<td class="note">Interesting northern pair with contrasting shapes.</td>
+</tr>
+<tr data-season="winter–spring" data-stars="1" data-type="Interacting pair">
+<td class="rank">98</td>
+<td class="object">NGC 2964 + NGC 2968</td>
+<td>—</td>
+<td aria-label="1 out of 5 stars" class="stars">★☆☆☆☆</td>
+<td>Interacting pair</td>
+<td>winter–spring</td>
+<td>5–9 hours</td>
+<td class="note">Small but worthwhile double target in Leo.</td>
+</tr>
+<tr data-season="summer" data-stars="1" data-type="Edge-on">
+<td class="rank">99</td>
+<td class="object">NGC 5985 + NGC 5982 + NGC 5981</td>
+<td>Draco Trio</td>
+<td aria-label="1 out of 5 stars" class="stars">★☆☆☆☆</td>
+<td>Edge-on</td>
+<td>summer</td>
+<td>6–10 hours</td>
+<td class="note">Three completely different galaxies in one northern field of view.</td>
+</tr>
+<tr data-season="summer" data-stars="1" data-type="Interacting pair">
+<td class="rank">100</td>
+<td class="object">NGC 6340-groep</td>
+<td>NGC 6340 Group</td>
+<td aria-label="1 out of 5 stars" class="stars">★☆☆☆☆</td>
+<td>Interacting pair</td>
+<td>summer</td>
+<td>6–10 hours</td>
+<td class="note">Attractive group target for long integration under dark skies.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="legend">
+<strong>Star rating:</strong>
+    ★★★★★ absolute top target · ★★★★☆ excellent · ★★★☆☆ good · ★★☆☆☆ challenging · ★☆☆☆☆ specialist target.<br/>
+<strong>Integration time:</strong> practical guideline for one final image. More total time generally produces a cleaner result and reveals faint outer structure more clearly.
+  </div>
+</main>
+<footer>Galaxy Atlas — Bjorn Swertz</footer>
+<script>
+(function () {
+  "use strict";
+
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  ready(function () {
+    const table = document.getElementById("atlas");
+    const tbody = table ? table.querySelector("tbody") : null;
+    const search = document.getElementById("search");
+    const stars = document.getElementById("stars");
+    const season = document.getElementById("season");
+    const type = document.getElementById("type");
+    const reset = document.getElementById("reset");
+    const count = document.getElementById("count");
+
+    if (!tbody || !search || !stars || !season || !type || !count) {
+      return;
+    }
+
+    function allRows() {
+      return Array.from(tbody.querySelectorAll("tr"));
+    }
+
+    function applyFilters() {
+      const query = search.value.trim().toLocaleLowerCase("en");
+      const starValue = stars.value;
+      const seasonValue = season.value.toLocaleLowerCase("en");
+      const typeValue = type.value.toLocaleLowerCase("en");
+      let visible = 0;
+
+      allRows().forEach(function (row) {
+        const text = row.textContent.toLocaleLowerCase("en");
+        const rowSeason = (row.dataset.season || "").toLocaleLowerCase("en");
+        const rowType = (row.dataset.type || "").toLocaleLowerCase("en");
+
+        const matches =
+          (!query || text.indexOf(query) !== -1) &&
+          (!starValue || row.dataset.stars === starValue) &&
+          (!seasonValue || rowSeason.indexOf(seasonValue) !== -1) &&
+          (!typeValue || rowType === typeValue);
+
+        row.hidden = !matches;
+        row.classList.toggle("hidden", !matches);
+        if (matches) visible += 1;
+      });
+
+      count.textContent = visible + (visible === 1 ? " object visible" : " objects visible");
+    }
+
+    [search, stars, season, type].forEach(function (element) {
+      element.addEventListener("input", applyFilters);
+      element.addEventListener("change", applyFilters);
+    });
+
+    if (reset) {
+      reset.addEventListener("click", function () {
+        search.value = "";
+        stars.value = "";
+        season.value = "";
+        type.value = "";
+        applyFilters();
+        search.focus();
+      });
+    }
+
+    let sortColumn = 0;
+    let sortAscending = true;
+
+    table.querySelectorAll("thead th").forEach(function (header) {
+      header.setAttribute("tabindex", "0");
+      header.setAttribute("role", "button");
+
+      function sortTable() {
+        const column = Number(header.dataset.col);
+        const kind = header.dataset.kind || "text";
+        sortAscending = sortColumn === column ? !sortAscending : true;
+        sortColumn = column;
+
+        const sorted = allRows().sort(function (a, b) {
+          let av = a.children[column].textContent.trim();
+          let bv = b.children[column].textContent.trim();
+
+          if (kind === "number") {
+            av = Number(av);
+            bv = Number(bv);
+          } else if (kind === "stars") {
+            av = Number(a.dataset.stars || 0);
+            bv = Number(b.dataset.stars || 0);
+          } else {
+            av = av.toLocaleLowerCase("en");
+            bv = bv.toLocaleLowerCase("en");
+          }
+
+          if (av < bv) return sortAscending ? -1 : 1;
+          if (av > bv) return sortAscending ? 1 : -1;
+          return 0;
+        });
+
+        sorted.forEach(function (row) {
+          tbody.appendChild(row);
+        });
+      }
+
+      header.addEventListener("click", sortTable);
+      header.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          sortTable();
+        }
+      });
+    });
+
+    applyFilters();
+  });
+})();
+</script>
+</body>
+</html>
