@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galaxy Atlas Top 100</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#090b10; --panel:#11151d; --panel2:#171c26;
+  --text:#eef2f7; --muted:#aab3c2; --line:#2b3342;
+  --accent:#8db8ff; --star:#ffd76a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#07090d,#0c1017 45%,#090b10);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header{padding:34px 18px 20px;text-align:center}
+h1{margin:0;font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:.02em}
+.subtitle{color:var(--muted);margin:10px auto 0;max-width:850px;line-height:1.5}
+.wrap{width:min(1500px,96vw);margin:auto;padding-bottom:40px}
+.controls{display:grid;grid-template-columns:minmax(230px,1fr) repeat(3,minmax(145px,205px)) auto;gap:10px;
+background:rgba(17,21,29,.94);padding:14px;border:1px solid var(--line);border-radius:14px;
+position:sticky;top:8px;z-index:5;backdrop-filter:blur(12px)}
+input,select,button{width:100%;background:#0d1118;color:var(--text);border:1px solid var(--line);
+border-radius:9px;padding:11px 12px;font-size:15px}
+button{cursor:pointer;font-weight:700;white-space:nowrap}
+button:hover{background:#182131;border-color:#4a5c78}
+.browser-note{margin:12px 2px 0;padding:11px 13px;border:1px solid #38465d;border-radius:10px;background:#111722;color:#c7d3e4;font-size:14px}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px;margin:12px 2px}
+.tablebox{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:1120px}
+thead th{position:sticky;top:0;background:var(--panel2);z-index:2;text-align:left;padding:13px 12px;
+font-size:13px;text-transform:uppercase;letter-spacing:.055em;color:#dce5f3;border-bottom:1px solid var(--line)}
+tbody td{padding:12px;border-bottom:1px solid #222936;vertical-align:top;line-height:1.38}
+tbody tr:hover{background:#151b25}
+.rank{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;width:48px}
+.object{font-weight:750;white-space:nowrap;color:#f7f9fc}
+.stars{color:var(--star);letter-spacing:1px;white-space:nowrap;font-size:17px}
+.note{min-width:310px;color:#d9e0ea}
+.legend{margin:18px 2px 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+color:var(--muted);line-height:1.65}
+.legend strong{color:var(--text)}
+footer{text-align:center;color:#788396;font-size:13px;padding:26px 16px}
+.hidden{display:none}
+@media(max-width:850px){
+  .controls{grid-template-columns:1fr 1fr;position:static}
+  .controls input{grid-column:1/-1}
+  .controls button{grid-column:1/-1}
+  header{padding-top:24px}
+}
+
+.language-switch{position:absolute;top:18px;right:clamp(18px,3vw,44px);display:flex;gap:7px;padding:5px;background:rgba(17,21,29,.78);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(10px)}
+.language-switch a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:700;padding:7px 11px;border-radius:999px}
+.language-switch a:hover{color:var(--text);background:#182131}
+.language-switch a.active{color:#07101d;background:var(--accent)}
+header{position:relative}
+@media(max-width:650px){.language-switch{position:static;width:max-content;margin:0 auto 18px}.language-switch a{font-size:13px;padding:6px 10px}}
+
+</style>
+</head>
+<body>
+<header>
+  <nav class="language-switch" aria-label="Taalkeuze">
+    <a class="active" href="index.html" lang="nl" aria-current="page">Nederlands</a>
+    <a href="galaxy-atlas-english.html" lang="en">English</a>
+  </nav>
+  <h1>Galaxy Atlas <small style="font-size:.42em;color:#8db8ff;vertical-align:middle"></small></h1>
+  <p class="subtitle">Top 100 sterrenstelsel-doelen vanuit Nederland.</p>
+</header>
+
+<main class="wrap">
+  <section class="controls" aria-label="Filters">
+    <input id="search" type="search" placeholder="Zoek object, bijnaam of opmerking…">
+    <select id="stars">
+      <option value="">Alle sterrenscores</option>
+      <option value="5">★★★★★</option>
+      <option value="4">★★★★☆</option>
+      <option value="3">★★★☆☆</option>
+      <option value="2">★★☆☆☆</option>
+      <option value="1">★☆☆☆☆</option>
+    </select>
+    <select id="season">
+      <option value="">Alle seizoenen</option>
+      <option value="winter">Winter</option>
+      <option value="lente">Lente</option>
+      <option value="zomer">Zomer</option>
+      <option value="herfst">Herfst</option>
+    </select>
+    <select id="type">
+      <option value="">Alle typen</option>
+      <option>Spiraal</option>
+      <option>Balkspiraal</option>
+      <option>Edge-on</option>
+      <option>Interactiepaar</option>
+      <option>Groep</option>
+      <option>Onregelmatig</option>
+      <option>Peculiar</option>
+      <option>Lenticulair</option>
+      <option>Elliptisch</option>
+      <option>Ringstelsel</option>
+      <option>Starburst</option>
+    </select>
+    <button id="reset" type="button">Wis filters</button>
+  </section>
+  <div class="meta">
+    <span id="count">100 objecten zichtbaar</span>
+    <span>Klik op een kolomtitel om te sorteren</span>
+  </div>
+
+  <div class="tablebox">
+    <table id="atlas">
+      <thead>
+        <tr>
+          <th data-col="0" data-kind="number">#</th>
+          <th data-col="1">Object</th>
+          <th data-col="2">Bijnaam</th>
+          <th data-col="3" data-kind="stars">Score</th>
+          <th data-col="4">Type</th>
+          <th data-col="5">Beste seizoen</th>
+          <th data-col="6">Integratietijd</th>
+          <th data-col="7">Opmerkingen</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="5" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">1</td>
+      <td class="object">M51 + NGC 5195</td>
+      <td>Whirlpool Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Zeer duidelijke spiraalarmen en een opvallende begeleider.</td>
+    </tr>
+<tr data-stars="5" data-season="winter–lente" data-type="Starburst">
+      <td class="rank">2</td>
+      <td class="object">M82</td>
+      <td>Cigar Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Starburst</td>
+      <td>winter–lente</td>
+      <td>1–3 uur</td>
+      <td class="note">Hoge oppervlaktehelderheid; stofstructuur verschijnt snel.</td>
+    </tr>
+<tr data-stars="5" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">3</td>
+      <td class="object">M81</td>
+      <td>Bode’s Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Grote heldere kern en subtiele, brede spiraalarmen.</td>
+    </tr>
+<tr data-stars="5" data-season="herfst" data-type="Interactiepaar">
+      <td class="rank">4</td>
+      <td class="object">M31 + M32 + M110</td>
+      <td>Andromedastelsel</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Interactiepaar</td>
+      <td>herfst</td>
+      <td>1–3 uur</td>
+      <td class="note">Mozaïek aanbevolen; alle drie de stelsels kunnen samen in beeld.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Spiraal">
+      <td class="rank">5</td>
+      <td class="object">M106</td>
+      <td>NGC 4258</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Heldere kern en een fraaie langgerekte schijf.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Edge-on">
+      <td class="rank">6</td>
+      <td class="object">NGC 4565</td>
+      <td>Needle Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Een van de mooiste edge-onstelsels, met duidelijke stofband.</td>
+    </tr>
+<tr data-stars="5" data-season="herfst" data-type="Spiraal">
+      <td class="rank">7</td>
+      <td class="object">M33</td>
+      <td>Triangulum Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>herfst</td>
+      <td>3–6 uur</td>
+      <td class="note">Groot en detailrijk, maar diffuus; mozaïek geeft het mooiste resultaat.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Spiraal">
+      <td class="rank">8</td>
+      <td class="object">M64</td>
+      <td>Black Eye Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">De donkere stofband bij de kern is het belangrijkste detail.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Spiraal">
+      <td class="rank">9</td>
+      <td class="object">M63</td>
+      <td>Sunflower Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Korrelige, vlokkerige spiraalstructuur rond een heldere kern.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Edge-on">
+      <td class="rank">10</td>
+      <td class="object">NGC 4631 + NGC 4627</td>
+      <td>Whale Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Groot, helder en grillig gevormd; begeleider vaak zichtbaar.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">11</td>
+      <td class="object">NGC 4490 + NGC 4485</td>
+      <td>Cocoon Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Fotogeniek interactief paar met een asymmetrische vorm.</td>
+    </tr>
+<tr data-stars="5" data-season="herfst" data-type="Edge-on">
+      <td class="rank">12</td>
+      <td class="object">NGC 891</td>
+      <td>Outer Limits Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Edge-on</td>
+      <td>herfst</td>
+      <td>3–5 uur</td>
+      <td class="note">Klassiek dun stelsel met centrale stofband.</td>
+    </tr>
+<tr data-stars="5" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">13</td>
+      <td class="object">NGC 2903</td>
+      <td>—</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Helder balkspiraalstelsel dat snel detail laat zien.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Edge-on / lenticulair">
+      <td class="rank">14</td>
+      <td class="object">M104</td>
+      <td>Sombrero Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Edge-on / lenticulair</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Zeer herkenbare heldere kern en stofband; fotografeer hem wanneer hij het hoogst in het zuiden staat.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Spiraal">
+      <td class="rank">15</td>
+      <td class="object">M101</td>
+      <td>Pinwheel Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>5–8 uur</td>
+      <td class="note">Zeer groot en rijk aan armen, maar lage oppervlaktehelderheid.</td>
+    </tr>
+<tr data-stars="5" data-season="zomer–herfst" data-type="Spiraal">
+      <td class="rank">16</td>
+      <td class="object">NGC 6946</td>
+      <td>Fireworks Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>zomer–herfst</td>
+      <td>4–7 uur</td>
+      <td class="note">Mooie face-onspiraal; profiteert sterk van een transparante nacht.</td>
+    </tr>
+<tr data-stars="5" data-season="lente" data-type="Spiraal">
+      <td class="rank">17</td>
+      <td class="object">M94</td>
+      <td>Croc’s Eye Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>1–3 uur</td>
+      <td class="note">Heldere kern en binnenring; buitenring vraagt veel tijd.</td>
+    </tr>
+<tr data-stars="5" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">18</td>
+      <td class="object">NGC 2403</td>
+      <td>—</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Nabij spiraalstelsel met onregelmatige stervormingsgebieden.</td>
+    </tr>
+<tr data-stars="5" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">19</td>
+      <td class="object">NGC 2841</td>
+      <td>Tiger’s Eye Galaxy</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere, compacte kern met fijne, strak gewonden armen.</td>
+    </tr>
+<tr data-stars="5" data-season="zomer–herfst" data-type="Spiraal">
+      <td class="rank">20</td>
+      <td class="object">NGC 7331</td>
+      <td>Deer Lick Group</td>
+      <td class="stars" aria-label="5 van 5 sterren">★★★★★</td>
+      <td>Spiraal</td>
+      <td>zomer–herfst</td>
+      <td>3–5 uur</td>
+      <td class="note">Heldere schuine schijf; kleine achtergrondstelsels komen vaak mee.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">21</td>
+      <td class="object">M65 + M66 + NGC 3628</td>
+      <td>Leo Triplet</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Sterk drietal; mozaïek of ruime kadrering aanbevolen.</td>
+    </tr>
+<tr data-stars="4" data-season="winter–lente" data-type="Edge-on">
+      <td class="rank">22</td>
+      <td class="object">NGC 2683</td>
+      <td>UFO Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>winter–lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Helder, langgerekt en goed passend in het beeldveld.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">23</td>
+      <td class="object">NGC 3521</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Helder, stoffig en rijk aan kleinschalige structuur.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">24</td>
+      <td class="object">M108</td>
+      <td>Surfboard Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Donkere vlekken en een grillige edge-onvorm.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Balkspiraal">
+      <td class="rank">25</td>
+      <td class="object">M109</td>
+      <td>Vacuum Cleaner Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Balkspiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Balkspiraal met heldere kern en zwakke buitenarmen.</td>
+    </tr>
+<tr data-stars="4" data-season="lente–zomer" data-type="Edge-on">
+      <td class="rank">26</td>
+      <td class="object">NGC 5907</td>
+      <td>Splinter Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente–zomer</td>
+      <td>3–5 uur</td>
+      <td class="note">Zeer dun edge-onstelsel met fraaie centrale verdikking.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">27</td>
+      <td class="object">NGC 4559</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Grote schuine spiraal met meerdere stervormingsgebieden.</td>
+    </tr>
+<tr data-stars="4" data-season="zomer" data-type="Spiraal">
+      <td class="rank">28</td>
+      <td class="object">NGC 6503</td>
+      <td>Lost-in-Space Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>zomer</td>
+      <td>3–5 uur</td>
+      <td class="note">Compact en helder genoeg voor een scherp S50-resultaat.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">29</td>
+      <td class="object">NGC 4244</td>
+      <td>Silver Needle Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Lang, dun en relatief helder edge-onstelsel.</td>
+    </tr>
+<tr data-stars="4" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">30</td>
+      <td class="object">NGC 3344</td>
+      <td>Sliced Onion Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Bijna face-on, met een nette ring en fijne armen.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">31</td>
+      <td class="object">NGC 4216</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Mooie Virgo edge-on; kleine buur-stelsels versterken de compositie.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">32</td>
+      <td class="object">NGC 4088 + NGC 4085</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Vervormd interactief paar met stofstructuur.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Onregelmatig">
+      <td class="rank">33</td>
+      <td class="object">NGC 4449</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Onregelmatig</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Onregelmatig stelsel met veel knopen en stervormingsgebieden.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Peculiar">
+      <td class="rank">34</td>
+      <td class="object">NGC 4656 + NGC 4657</td>
+      <td>Hockey Stick Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Peculiar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Zeer herkenbare gebogen vorm; past mooi horizontaal.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">35</td>
+      <td class="object">NGC 4013</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Smalle edge-on met duidelijke donkere middenband.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">36</td>
+      <td class="object">NGC 3079</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Actieve kern en een opvallend onrustige schijf.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">37</td>
+      <td class="object">NGC 3718 + NGC 3729</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Sterk vervormd systeem met een mooie begeleider.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">38</td>
+      <td class="object">NGC 3953</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere kern en fraaie balkspiraalstructuur.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">39</td>
+      <td class="object">NGC 4151 + NGC 4156</td>
+      <td>Eye Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere Seyfert-kern met een subtiele buitenstructuur.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">40</td>
+      <td class="object">NGC 3893 + NGC 3896</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Mooi interactief paar in Ursa Major.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">41</td>
+      <td class="object">NGC 5005</td>
+      <td>Caldwell 29</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Heldere kern, schuine schijf en stofbanen.</td>
+    </tr>
+<tr data-stars="4" data-season="lente–zomer" data-type="Groep">
+      <td class="rank">42</td>
+      <td class="object">NGC 5371 + Hickson 68</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Groep</td>
+      <td>lente–zomer</td>
+      <td>4–8 uur</td>
+      <td class="note">Interessante combinatie van een spiraal en compacte groep.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">43</td>
+      <td class="object">M100</td>
+      <td>Mirror Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–6 uur</td>
+      <td class="note">Elegante face-onspiraal; armen worden duidelijker met lange integratie.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">44</td>
+      <td class="object">M99</td>
+      <td>Coma Pinwheel Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–6 uur</td>
+      <td class="note">Opvallend asymmetrisch patroon met één dominante arm.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Peculiar">
+      <td class="rank">45</td>
+      <td class="object">NGC 4725</td>
+      <td>One-Armed Spiral</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Peculiar</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Ringachtige structuur met een merkwaardig éénarmig uiterlijk.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Spiraal">
+      <td class="rank">46</td>
+      <td class="object">NGC 3631</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Symmetrische spiraal die vooral met lange integratie loont.</td>
+    </tr>
+<tr data-stars="4" data-season="lente–zomer" data-type="Edge-on">
+      <td class="rank">47</td>
+      <td class="object">NGC 5866</td>
+      <td>Spindle Galaxy / M102</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente–zomer</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere lensvormige edge-on met subtiele stofband.</td>
+    </tr>
+<tr data-stars="4" data-season="lente" data-type="Edge-on">
+      <td class="rank">48</td>
+      <td class="object">NGC 5775 + NGC 5774</td>
+      <td>—</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Fotogeniek interactief paar met contrasterende oriëntaties.</td>
+    </tr>
+<tr data-stars="4" data-season="herfst–winter" data-type="Peculiar / poolring">
+      <td class="rank">49</td>
+      <td class="object">NGC 660</td>
+      <td>Polar Ring Galaxy</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Peculiar / poolring</td>
+      <td>herfst–winter</td>
+      <td>4–8 uur</td>
+      <td class="note">Bijzonder vervormd stelsel met een donkere, schuine ringstructuur.</td>
+    </tr>
+<tr data-stars="4" data-season="winter–lente" data-type="Interactiepaar">
+      <td class="rank">50</td>
+      <td class="object">NGC 3226 + NGC 3227</td>
+      <td>Arp 94</td>
+      <td class="stars" aria-label="4 van 5 sterren">★★★★☆</td>
+      <td>Interactiepaar</td>
+      <td>winter–lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Compact interactief paar vlak bij Gamma Leonis.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">51</td>
+      <td class="object">NGC 4567 + NGC 4568</td>
+      <td>Siamese Twins</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Twee overlappende Virgo-spiralen; duidelijke dubbele kern.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">52</td>
+      <td class="object">M96</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere kern; onderdeel van een rijke Leo-groep.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Balkspiraal">
+      <td class="rank">53</td>
+      <td class="object">M95</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Balkspiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Mooie centrale balk en ringstructuur.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">54</td>
+      <td class="object">M105 + NGC 3384 + NGC 3389</td>
+      <td>Leo I-groep</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Drie verschillende stelseltypen in één beeldveld.</td>
+    </tr>
+<tr data-stars="3" data-season="winter–lente" data-type="Groep">
+      <td class="rank">55</td>
+      <td class="object">NGC 3190-groep</td>
+      <td>Hickson 44</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Groep</td>
+      <td>winter–lente</td>
+      <td>5–9 uur</td>
+      <td class="note">Compacte groep met NGC 3190, 3187, 3193 en 3185.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">56</td>
+      <td class="object">NGC 3184</td>
+      <td>Little Pinwheel Galaxy</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>5–9 uur</td>
+      <td class="note">Mooie face-onspiraal, maar de armen zijn diffuus.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Peculiar">
+      <td class="rank">57</td>
+      <td class="object">NGC 3310</td>
+      <td>Bow-and-Arrow Galaxy</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Peculiar</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Compact starburststelsel met heldere knopen.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Edge-on">
+      <td class="rank">58</td>
+      <td class="object">NGC 3432</td>
+      <td>Knitting Needle Galaxy</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Dun, onregelmatig en rijk aan stervormingsknopen.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">59</td>
+      <td class="object">NGC 4051</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Actieve kern met zwakke, asymmetrische armen.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Balkspiraal">
+      <td class="rank">60</td>
+      <td class="object">NGC 4274</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Balkspiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Mooie balk en lensvormige binnenstructuur.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">61</td>
+      <td class="object">NGC 4618 + NGC 4625</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Onregelmatig paar; NGC 4618 heeft een opvallend éénarmig uiterlijk.</td>
+    </tr>
+<tr data-stars="3" data-season="zomer" data-type="Spiraal">
+      <td class="rank">62</td>
+      <td class="object">NGC 6015</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>zomer</td>
+      <td>4–8 uur</td>
+      <td class="note">Goede noordelijke zomerdoelstelling met vlekkerige schijf.</td>
+    </tr>
+<tr data-stars="3" data-season="zomer–herfst" data-type="Spiraal">
+      <td class="rank">63</td>
+      <td class="object">NGC 7217</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>zomer–herfst</td>
+      <td>4–7 uur</td>
+      <td class="note">Bijna rond stelsel met meerdere subtiele ringen.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst" data-type="Balkspiraal">
+      <td class="rank">64</td>
+      <td class="object">NGC 7479</td>
+      <td>Superman Galaxy</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Balkspiraal</td>
+      <td>herfst</td>
+      <td>5–9 uur</td>
+      <td class="note">Sterke balk en één dominante gebogen arm.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst" data-type="Edge-on">
+      <td class="rank">65</td>
+      <td class="object">NGC 7814</td>
+      <td>Little Sombrero Galaxy</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Edge-on</td>
+      <td>herfst</td>
+      <td>4–8 uur</td>
+      <td class="note">Heldere kern en dunne stofband; noordelijk alternatief voor M104.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst" data-type="Interactiepaar">
+      <td class="rank">66</td>
+      <td class="object">NGC 772 + NGC 770</td>
+      <td>Arp 78</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>herfst</td>
+      <td>4–8 uur</td>
+      <td class="note">Asymmetrische spiraal met een sterk uitgerekte arm.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst" data-type="Spiraal">
+      <td class="rank">67</td>
+      <td class="object">NGC 925</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>herfst</td>
+      <td>5–9 uur</td>
+      <td class="note">Groot, los opgebouwd stelsel met lage oppervlaktehelderheid.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst–winter" data-type="Interactiepaar">
+      <td class="rank">68</td>
+      <td class="object">NGC 1023 + NGC 1023A</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>herfst–winter</td>
+      <td>3–6 uur</td>
+      <td class="note">Helder lensvormig stelsel met kleine begeleider.</td>
+    </tr>
+<tr data-stars="3" data-season="herfst–winter" data-type="Edge-on">
+      <td class="rank">69</td>
+      <td class="object">NGC 1055</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Edge-on</td>
+      <td>herfst–winter</td>
+      <td>4–8 uur</td>
+      <td class="note">Stoffig edge-onstelsel, mooi als afzonderlijk doel.</td>
+    </tr>
+<tr data-stars="3" data-season="winter" data-type="Peculiar">
+      <td class="rank">70</td>
+      <td class="object">NGC 2146</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Peculiar</td>
+      <td>winter</td>
+      <td>4–8 uur</td>
+      <td class="note">Sterk verstoord starburststelsel met onregelmatige stofbanen.</td>
+    </tr>
+<tr data-stars="3" data-season="winter" data-type="Spiraal">
+      <td class="rank">71</td>
+      <td class="object">NGC 2336</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>winter</td>
+      <td>5–9 uur</td>
+      <td class="note">Grote noordelijke balkspiraal met zwakke buitenarmen.</td>
+    </tr>
+<tr data-stars="3" data-season="winter–lente" data-type="Spiraal">
+      <td class="rank">72</td>
+      <td class="object">NGC 2775</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>winter–lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Compacte, fotogenieke spiraal met zeer strak gewonden armen.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">73</td>
+      <td class="object">NGC 3675</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Schuine spiraal met heldere kern en stofstructuur.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">74</td>
+      <td class="object">NGC 4100</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Langgerekt en redelijk helder lid van de M109-groep.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">75</td>
+      <td class="object">M88</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Schuin bekeken spiraal met compacte kern.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">76</td>
+      <td class="object">M98</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Langgerekte Virgo-spiraal met heldere kern.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">77</td>
+      <td class="object">M90</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Groot Virgo-stelsel met subtiele, gladde armen.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Balkspiraal">
+      <td class="rank">78</td>
+      <td class="object">M91</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Balkspiraal</td>
+      <td>lente</td>
+      <td>5–8 uur</td>
+      <td class="note">Duidelijke centrale balk; armen blijven vrij zwak.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Spiraal">
+      <td class="rank">79</td>
+      <td class="object">M58</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Compact balkspiraalstelsel in een druk sterrenstelselveld.</td>
+    </tr>
+<tr data-stars="3" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">80</td>
+      <td class="object">M85 + NGC 4394</td>
+      <td>—</td>
+      <td class="stars" aria-label="3 van 5 sterren">★★★☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere lenticulaire galaxie met fraaie balkspiraal als buur.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">81</td>
+      <td class="object">M84 + M86</td>
+      <td>Markarian’s Chain-kern</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Twee heldere Virgo-stelsels met meerdere zwakkere buren in beeld.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Elliptisch">
+      <td class="rank">82</td>
+      <td class="object">M87</td>
+      <td>Virgo A</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Elliptisch</td>
+      <td>lente</td>
+      <td>2–4 uur</td>
+      <td class="note">Enorme elliptische kern; de jet zelf is een lastige bonus.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">83</td>
+      <td class="object">NGC 4435 + NGC 4438</td>
+      <td>The Eyes</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Een van de markantste interactieparen in Virgo.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Interactiepaar">
+      <td class="rank">84</td>
+      <td class="object">M60 + NGC 4647</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Helder elliptisch stelsel naast een zwakkere spiraal.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Elliptisch">
+      <td class="rank">85</td>
+      <td class="object">M59</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Elliptisch</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Helder elliptisch stelsel, vooral mooi in een Virgo-mozaïek.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Elliptisch">
+      <td class="rank">86</td>
+      <td class="object">M89</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Elliptisch</td>
+      <td>lente</td>
+      <td>3–5 uur</td>
+      <td class="note">Bijna rond elliptisch stelsel met compacte kern.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Elliptisch">
+      <td class="rank">87</td>
+      <td class="object">NGC 4636</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Elliptisch</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Helder elliptisch stelsel in een rijk achtergrondveld.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Edge-on">
+      <td class="rank">88</td>
+      <td class="object">NGC 4762 + NGC 4754</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Edge-on</td>
+      <td>lente</td>
+      <td>4–8 uur</td>
+      <td class="note">Zeer dun lensvormig stelsel naast een compactere buur.</td>
+    </tr>
+<tr data-stars="2" data-season="lente–zomer" data-type="Spiraal">
+      <td class="rank">89</td>
+      <td class="object">NGC 5585</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Spiraal</td>
+      <td>lente–zomer</td>
+      <td>4–7 uur</td>
+      <td class="note">Diffuse maar aardige dwergspiraal met vlekkerige structuur.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Spiraal">
+      <td class="rank">90</td>
+      <td class="object">NGC 3626</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Compact en relatief helder vroeg-type spiraalstelsel.</td>
+    </tr>
+<tr data-stars="2" data-season="winter–lente" data-type="Interactiepaar">
+      <td class="rank">91</td>
+      <td class="object">NGC 3166 + NGC 3169</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>winter–lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Mooi verstoord paar, maar laag aan de Nederlandse hemel.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Balkspiraal">
+      <td class="rank">92</td>
+      <td class="object">NGC 3941</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Balkspiraal</td>
+      <td>lente</td>
+      <td>3–6 uur</td>
+      <td class="note">Heldere, compacte lensvormige galaxie.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Spiraal">
+      <td class="rank">93</td>
+      <td class="object">NGC 4395</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>6–10 uur</td>
+      <td class="note">Groot maar zeer diffuus; interessante actieve dwerggalaxie.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Spiraal">
+      <td class="rank">94</td>
+      <td class="object">NGC 4699</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Spiraal</td>
+      <td>lente</td>
+      <td>4–7 uur</td>
+      <td class="note">Compacte, heldere spiraal maar vrij laag vanuit Nederland.</td>
+    </tr>
+<tr data-stars="2" data-season="lente" data-type="Peculiar">
+      <td class="rank">95</td>
+      <td class="object">NGC 4731</td>
+      <td>—</td>
+      <td class="stars" aria-label="2 van 5 sterren">★★☆☆☆</td>
+      <td>Peculiar</td>
+      <td>lente</td>
+      <td>5–9 uur</td>
+      <td class="note">Sterk vervormde balkspiraal met lange, zwakke armen.</td>
+    </tr>
+<tr data-stars="1" data-season="zomer" data-type="Spiraal">
+      <td class="rank">96</td>
+      <td class="object">NGC 6643</td>
+      <td>—</td>
+      <td class="stars" aria-label="1 van 5 sterren">★☆☆☆☆</td>
+      <td>Spiraal</td>
+      <td>zomer</td>
+      <td>4–8 uur</td>
+      <td class="note">Compact zomerstelsel met heldere kern en fijne armstructuur.</td>
+    </tr>
+<tr data-stars="1" data-season="herfst–winter" data-type="Interactiepaar">
+      <td class="rank">97</td>
+      <td class="object">NGC 1161 + NGC 1160</td>
+      <td>—</td>
+      <td class="stars" aria-label="1 van 5 sterren">★☆☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>herfst–winter</td>
+      <td>5–9 uur</td>
+      <td class="note">Interessant noordelijk paar met contrasterende vormen.</td>
+    </tr>
+<tr data-stars="1" data-season="winter–lente" data-type="Interactiepaar">
+      <td class="rank">98</td>
+      <td class="object">NGC 2964 + NGC 2968</td>
+      <td>—</td>
+      <td class="stars" aria-label="1 van 5 sterren">★☆☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>winter–lente</td>
+      <td>5–9 uur</td>
+      <td class="note">Klein maar aardig dubbeldoel in Leo.</td>
+    </tr>
+<tr data-stars="1" data-season="zomer" data-type="Edge-on">
+      <td class="rank">99</td>
+      <td class="object">NGC 5985 + NGC 5982 + NGC 5981</td>
+      <td>Draco Trio</td>
+      <td class="stars" aria-label="1 van 5 sterren">★☆☆☆☆</td>
+      <td>Edge-on</td>
+      <td>zomer</td>
+      <td>6–10 uur</td>
+      <td class="note">Drie totaal verschillende stelsels in één noordelijk beeldveld.</td>
+    </tr>
+<tr data-stars="1" data-season="zomer" data-type="Interactiepaar">
+      <td class="rank">100</td>
+      <td class="object">NGC 6340-groep</td>
+      <td>NGC 6340 Group</td>
+      <td class="stars" aria-label="1 van 5 sterren">★☆☆☆☆</td>
+      <td>Interactiepaar</td>
+      <td>zomer</td>
+      <td>6–10 uur</td>
+      <td class="note">Mooi groepsdoel voor langere integratie onder donkere hemel.</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <strong>Sterrenscore:</strong>
+    ★★★★★ absolute top · ★★★★☆ uitstekend · ★★★☆☆ goed · ★★☆☆☆ uitdagend · ★☆☆☆☆ specialistisch doel.<br>
+    <strong>Integratietijd:</strong> praktische richtlijn voor één uiteindelijke opname. Meer totale tijd geeft doorgaans een rustiger beeld en maakt zwakke buitenstructuur beter zichtbaar.
+  </div>
+</main>
+
+<footer>Galaxy Atlas — Bjorn Swertz</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  ready(function () {
+    const table = document.getElementById("atlas");
+    const tbody = table ? table.querySelector("tbody") : null;
+    const search = document.getElementById("search");
+    const stars = document.getElementById("stars");
+    const season = document.getElementById("season");
+    const type = document.getElementById("type");
+    const reset = document.getElementById("reset");
+    const count = document.getElementById("count");
+
+    if (!tbody || !search || !stars || !season || !type || !count) {
+      return;
+    }
+
+    function allRows() {
+      return Array.from(tbody.querySelectorAll("tr"));
+    }
+
+    function applyFilters() {
+      const query = search.value.trim().toLocaleLowerCase("nl");
+      const starValue = stars.value;
+      const seasonValue = season.value.toLocaleLowerCase("nl");
+      const typeValue = type.value.toLocaleLowerCase("nl");
+      let visible = 0;
+
+      allRows().forEach(function (row) {
+        const text = row.textContent.toLocaleLowerCase("nl");
+        const rowSeason = (row.dataset.season || "").toLocaleLowerCase("nl");
+        const rowType = (row.dataset.type || "").toLocaleLowerCase("nl");
+
+        const matches =
+          (!query || text.indexOf(query) !== -1) &&
+          (!starValue || row.dataset.stars === starValue) &&
+          (!seasonValue || rowSeason.indexOf(seasonValue) !== -1) &&
+          (!typeValue || rowType === typeValue);
+
+        row.hidden = !matches;
+        row.classList.toggle("hidden", !matches);
+        if (matches) visible += 1;
+      });
+
+      count.textContent = visible + (visible === 1 ? " object zichtbaar" : " objecten zichtbaar");
+    }
+
+    [search, stars, season, type].forEach(function (element) {
+      element.addEventListener("input", applyFilters);
+      element.addEventListener("change", applyFilters);
+    });
+
+    if (reset) {
+      reset.addEventListener("click", function () {
+        search.value = "";
+        stars.value = "";
+        season.value = "";
+        type.value = "";
+        applyFilters();
+        search.focus();
+      });
+    }
+
+    let sortColumn = 0;
+    let sortAscending = true;
+
+    table.querySelectorAll("thead th").forEach(function (header) {
+      header.setAttribute("tabindex", "0");
+      header.setAttribute("role", "button");
+
+      function sortTable() {
+        const column = Number(header.dataset.col);
+        const kind = header.dataset.kind || "text";
+        sortAscending = sortColumn === column ? !sortAscending : true;
+        sortColumn = column;
+
+        const sorted = allRows().sort(function (a, b) {
+          let av = a.children[column].textContent.trim();
+          let bv = b.children[column].textContent.trim();
+
+          if (kind === "number") {
+            av = Number(av);
+            bv = Number(bv);
+          } else if (kind === "stars") {
+            av = Number(a.dataset.stars || 0);
+            bv = Number(b.dataset.stars || 0);
+          } else {
+            av = av.toLocaleLowerCase("nl");
+            bv = bv.toLocaleLowerCase("nl");
+          }
+
+          if (av < bv) return sortAscending ? -1 : 1;
+          if (av > bv) return sortAscending ? 1 : -1;
+          return 0;
+        });
+
+        sorted.forEach(function (row) {
+          tbody.appendChild(row);
+        });
+      }
+
+      header.addEventListener("click", sortTable);
+      header.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          sortTable();
+        }
+      });
+    });
+
+    applyFilters();
+  });
+})();
+</script>
+</body>
+</html>
